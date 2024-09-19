@@ -73,6 +73,12 @@ const (
 	AgentModelDirArgName  = "--model-dir"
 )
 
+// InferenceLogger Constants
+const (
+	LoggerCaBundleVolume  = "agent-ca-bundle"
+	LoggerCaCertMountPath = "/etc/tls/logger"
+)
+
 // InferenceService Annotations
 var (
 	InferenceServiceGKEAcceleratorAnnotationKey = KServeAPIGroupName + "/gke-accelerator"
@@ -552,6 +558,10 @@ func PredictPrefix() string {
 
 func ExplainPrefix() string {
 	return "^/v1/models/[\\w-]+:explain$"
+}
+
+func PathBasedExplainPrefix() string {
+	return "(/v1/models/[\\w-]+:explain)$"
 }
 
 func VirtualServiceHostname(name string, predictorHostName string) string {
